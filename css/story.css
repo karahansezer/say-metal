@@ -1,0 +1,439 @@
+/* The story starts under the film, with the same optical margins and warm type. */
+.home-story {
+  --coal:#141310; --cream:#f4ede1; --gold:#e7c594; --line:#fff0d530;
+  --secondary:#c9c0b3; --paper:#eee8dc; --ink:#302a23;
+  --wrap:1512px;
+  background:var(--coal); color:var(--cream);
+}
+.home-story .section { padding-block:clamp(72px,7.7vw,128px); }
+.home-story :is(.intro-big,.d2) {
+  font:390 clamp(40px,4.85vw,82px)/1.045 var(--serif);
+  letter-spacing:-.052em; text-wrap:balance;
+}
+.home-story :is(.intro-big,.d2) em { color:var(--accent,var(--gold)) !important; font-style:italic; font-weight:350; }
+.home-story .lead, .home-story .history-prose { color:var(--secondary); font-size:clamp(16px,1.24vw,20px); line-height:1.55; }
+.home-story .eyebrow { color:inherit; font:500 12px/1.3 var(--mono); letter-spacing:.09em; }
+.home-story .eyebrow::before { width:30px; height:1px; background:var(--accent,var(--gold)); }
+.home-story .link-arrow, .home-story .btn-ghost {
+  display:inline-flex; align-items:baseline; gap:16px; height:auto; min-height:32px;
+  padding:0 0 5px; border:0; border-radius:0; border-bottom:1px solid currentColor;
+  color:inherit; background:none; font:550 15px/1.5 var(--sans); box-shadow:none;
+}
+.home-story .link-arrow:hover, .home-story .btn-ghost:hover { color:var(--accent,var(--gold)); }
+.home-story .cap { color:#b7ad9f; font:400 11px/1.5 var(--mono); text-transform:none; letter-spacing:.02em; }
+.home-story .flag { border-radius:0; border:0; padding:0; color:inherit; background:none; font:400 10px/1.4 var(--mono); }
+.home-story .section-head--split { grid-template-columns:minmax(0,1.14fr) minmax(280px,.72fr); gap:clamp(48px,9vw,160px); }
+.home-story .section-head--split .lead { max-width:49ch; }
+
+/* The last exterior in the film leads into a closer view of the same site. */
+.story-intro { scroll-margin-top:-24px; background:var(--coal); padding-bottom:clamp(64px,8vw,132px); }
+.history-opening { position:relative; isolation:isolate; display:grid; align-items:end; min-height:clamp(470px,66svh,750px); }
+.history-photo { position:absolute; z-index:-2; inset:0 0 0 auto; width:74%; height:100%; object-fit:cover; object-position:52% 49%; mask-image:linear-gradient(90deg,transparent,#000 32%); }
+.history-opening::before {
+  content:""; position:absolute; z-index:-1; inset:0;
+  background:linear-gradient(0deg,var(--coal) 0%, #14131073 14%,transparent 47%),
+    linear-gradient(90deg,var(--coal) 11%,#141310f5 24%,#141310d9 35%,#14131080 50%,transparent 69%);
+}
+.history-statement { max-width:min(58%,860px); padding:clamp(80px,10vh,130px) 0 clamp(45px,6vw,98px); }
+.history-statement .intro-big { font-size:clamp(38px,3.82vw,68px); line-height:1.12; margin-top:24px; }
+.history-notes { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.95fr); align-items:start; gap:clamp(42px,9vw,168px); padding-top:clamp(30px,3.7vw,66px); }
+.history-notes .stats { display:grid; grid-template-columns:1.25fr 1fr .85fr; border-top:1px solid var(--line); }
+.history-notes .stat { border:0; padding:22px 8px 0 0; gap:9px; }
+.history-notes .stat b { color:var(--cream); font-size:clamp(38px,4.2vw,72px); }
+.history-notes .stat > span { color:var(--secondary); font-size:14px; }
+.history-prose .link-arrow { margin-top:24px; color:var(--cream); }
+.home-story .film-strip { gap:clamp(10px,1.3vw,25px); margin-top:clamp(44px,5.4vw,88px); }
+.shot-link { display:block; }
+.home-story .film-strip .media-frame { aspect-ratio:2.12; border-radius:0; background:#261f17; }
+.shot-caption { display:flex; align-items:baseline; gap:12px; padding:12px 0 9px; border-bottom:1px solid var(--line); font-size:15px; }
+.shot-caption b { font:400 10px/1 var(--mono); color:var(--gold); }
+.shot-caption::after { content:"↗"; margin-left:auto; font:15px/1 var(--sans); color:var(--gold); }
+.shot-link:hover .shot-caption, .shot-link:focus-visible .shot-caption { border-color:var(--gold); }
+
+/* Let the frame bleed into the same dark exposure behind the captions. */
+.home-story .world { height:315vh; background:#13150f; }
+.world-bookmark { position:absolute; top:calc(50% - 50vh); scroll-margin-top:calc(-1 * (var(--header-h) + 24px)); }
+.home-story .world-stage {
+  background:radial-gradient(ellipse at 66% 47%,#373a29 0%,#23271b 33%,#151811 70%,#11130f 100%);
+}
+.home-story .world-media {
+  inset:0 -5% 0 auto; width:min(90%,185svh); z-index:0;
+  mask-image:linear-gradient(90deg,transparent 0%,#0001 10%,#0009 28%,#000 50%);
+}
+.home-story .world-stage::after { display:none; }
+.world-stills, .world-stills img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.world[data-mode="none"] .world-stills,.world.has-scrub-frame .world-stills { visibility:hidden; }
+.world[data-mode="video"]:not(.has-scrub-frame) .world-media video { opacity:0; }
+.home-story .world-lines, .home-story .world[data-mode="frames"] .world-lines {
+  position:absolute; z-index:1; inset:auto auto 22% max(var(--gut),calc((100% - 1512px)/2));
+  align-self:auto; align-content:end; align-items:end; justify-items:start;
+  text-align:left; width:min(37vw,570px); padding:0;
+}
+.home-story .world-line, .home-story .world[data-mode="frames"] .world-line {
+  font:390 clamp(36px,3.55vw,64px)/1.09 var(--serif); letter-spacing:-.041em; max-width:100%;
+  text-shadow:none; filter:none; transform:translateY(7px); transition:opacity .32s,transform .4s var(--ease);
+}
+.home-story .world-line.is-on { transform:none; }
+.world-phrase { display:block; }
+.home-story .world-line em { color:#ebd0a4; }
+.home-story .world-count {
+  left:max(var(--gut),calc((100% - 1512px)/2)); bottom:14%; transform:none; color:var(--cream);
+}
+.home-story .world-count i { width:100px; }
+.home-story .world-count i::after { background:var(--gold); }
+.home-story .world-tag, .home-story .world-meter { z-index:2; }
+/* Dünya bölümünün yer tutucu notu yayında hiç görünmez (video yüklenmeden ya da betik çalışmadan da) */
+.home-story .world-tag { display:none; }
+
+/* Scroll through the samples on one inspection table. */
+html:has(#hizmetler:target) { scroll-behavior:auto; }
+.home-story .services-story {
+  --plate-ink:#141411; --plate-ivory:#f4eee1; --plate-brass:#e4bc83;
+  padding:0; scroll-margin-top:-24px; background:var(--plate-ink); color:var(--plate-ivory);
+}
+.service-pin { padding-block:clamp(22px,3.7svh,48px); }
+.service-heading { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.service-scenes { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:36px; margin-top:32px; }
+.material-detail { align-content:start; display:grid; gap:14px; }
+.material-detail h3 { font:410 32px/1.04 var(--serif); letter-spacing:-.04em; }
+.sample-description { font:420 17px/1.52 var(--sans); text-wrap:pretty; color:#e0dcd0; }
+.sample-metal,.material-link { width:fit-content; display:inline-flex; align-items:center; color:var(--plate-brass); gap:10px; }
+.material-link { font:560 15px/1.3 var(--sans); border-bottom:1px solid #ddbb8280; padding-block:5px; }
+.material-link i { font-style:normal; font-size:17px; }
+.sample-metal { font:475 14px/1.25 var(--sans); color:#d6cec0; }
+.sample-metal b { order:-1; border:1px solid #b9a17a78; padding:4px 5px; font:450 17px/1 var(--serif); color:var(--plate-brass); }
+.sample-metal i { font:400 9px/1 var(--sans); }
+:is(.sample-metal,.material-link):is(:hover,:focus-visible) { color:#fff6e6; }
+:is(.service-name,.sample-metal,.material-link):focus-visible { outline:2px solid var(--plate-brass); outline-offset:4px; }
+.service-map,.service-names,.tour-cue { display:none; }
+.service-after { display:grid; grid-template-columns:1fr .93fr; align-items:center; gap:8%; padding-block:clamp(35px,4.6vw,80px); }
+.service-statement { font:385 clamp(28px,2.8vw,49px)/1.08 var(--serif); letter-spacing:-.04em; text-wrap:balance; }
+.service-statement em { color:var(--plate-brass); }
+.service-colophon { padding-top:6px; }
+html:not(.review) .service-colophon { display:none; }
+
+.is-exhibit .service-tour::after { content:""; display:block; height:clamp(900px,155svh,1550px); }
+.is-exhibit .service-pin {
+  position:sticky; top:var(--header-h); display:grid; grid-template-rows:auto minmax(0,1fr) auto; grid-template-areas:"heading" "stage" "index";
+  height:min(calc(100svh - var(--header-h)),960px); padding-bottom:clamp(20px,3.5svh,42px);
+}
+.is-exhibit .service-heading { grid-area:heading; }
+.is-exhibit .tour-cue { display:inline-flex; align-items:center; gap:10px; font:480 13px/1.3 var(--sans); color:#cdc7ba; }
+.tour-cue i { color:var(--plate-brass); font-style:normal; }
+.tour-position { padding-left:14px; margin-left:4px; border-left:1px solid #7d786d; font:500 12px/1 var(--mono); color:var(--plate-brass); }
+.is-exhibit .focus-layout { grid-area:stage; position:relative; display:grid; grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr); align-items:stretch; }
+.is-exhibit .service-scenes { z-index:1; align-self:center; grid-template-columns:minmax(0,1fr); margin:0; padding-block:12px; }
+.is-exhibit .material-detail {
+  grid-area:1/1; display:grid; align-self:center; justify-items:start; align-content:center;
+  gap:0; grid-template-columns:minmax(0,1fr); pointer-events:none; visibility:hidden;
+}
+.is-exhibit .material-detail.is-current { visibility:visible; pointer-events:auto; animation:service-appear .28s ease-out; }
+@keyframes service-appear { from { opacity:.2; transform:translateY(5px); } }
+.is-exhibit .material-detail h3 {
+  font:370 clamp(44px,4.9vw,82px)/1.01 var(--serif); letter-spacing:-.054em;
+  max-width:100%; text-wrap:balance;
+}
+.is-exhibit .sample-description {
+  margin:clamp(14px,2.45svh,28px) 0 clamp(15px,2.9svh,31px);
+  max-width:min(44ch,91%); font:420 clamp(18px,1.33vw,22px)/1.5 var(--sans);
+}
+.is-exhibit .material-link { gap:14px; }
+.is-exhibit .sample-metal { order:-1; margin-bottom:clamp(10px,1.8svh,21px); }
+.is-exhibit .service-map {
+  display:block; position:relative; overflow:hidden; align-self:stretch; margin:0 -2.5vw 0 -1vw;
+  background:#100f0e; pointer-events:none;
+  mask-image:radial-gradient(ellipse 62% 60% at 50% 50%,#000 59%,#000e 73%,transparent 100%),
+    linear-gradient(90deg,transparent,#000 10%,#000 92%,transparent),
+    linear-gradient(0deg,transparent,#000 11%,#000 90%,transparent);
+  mask-composite:intersect;
+}
+.is-exhibit .assay-table {
+  display:block; position:absolute; top:0; left:0; width:1536px; max-width:none; height:1024px;
+  transform-origin:0 0; transition:transform .48s cubic-bezier(.22,.75,.24,1);
+}
+.is-exhibit .service-map::after {
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(ellipse var(--light-w,42%) var(--light-h,38%) at 50% 50%,transparent 56%,#0f100e1a 76%,#11120fc7 115%,#11120ff0 150%);
+}
+.is-exhibit .service-names { grid-area:index; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); column-gap:clamp(10px,1.4vw,26px); }
+.service-name {
+  border-top:1px solid #e4d8b83a; display:flex; align-items:center; position:relative; text-align:left;
+  background:var(--plate-ink); color:#bcb9ad; font:470 clamp(13px,1vw,17px)/1.2 var(--sans); padding:14px 0 3px; gap:clamp(7px,.75vw,15px);
+}
+.service-name::before { content:""; position:absolute; top:-1px; left:0; width:100%; height:2px; background:var(--plate-brass); transform:scaleX(0); transform-origin:0 50%; transition:transform .24s ease-out; }
+.service-name[aria-selected="true"] { color:#ffedcc; }
+.service-name[aria-selected="true"]::before { transform:scaleX(1); }
+.service-name:hover { color:white; }
+.service-thumb {
+  width:clamp(33px,3.55vw,60px); flex:none; aspect-ratio:1; background:url('../assets/img/hizmet-numuneleri.webp') var(--thumb-at)/300% 200% no-repeat;
+  mix-blend-mode:screen; opacity:.67; transition:opacity .2s;
+}
+.service-name:is([aria-selected="true"],:hover) .service-thumb { opacity:1; }
+@media (max-width:1100px), (max-height:660px) {
+  .is-exhibit .sample-description { font-size:clamp(16px,1.6vw,18px); margin:12px 0 14px; line-height:1.44; }
+  .is-exhibit .material-detail h3 { font-size:clamp(37px,4.4vw,56px); }
+  .is-exhibit .sample-metal { margin-bottom:9px; }
+  .service-name { gap:6px; padding-top:10px; }
+}
+@media (max-width:930px) {
+  .is-exhibit .service-names { column-gap:9px; }
+  .is-exhibit .service-thumb { width:29px; }
+}
+@media (max-width:700px) { .service-after { grid-template-columns:1fr; gap:16px; } }
+@media (prefers-reduced-motion:reduce) {
+  .is-exhibit .assay-table,.service-name::before,.service-thumb { transition:none; }
+  .is-exhibit .material-detail.is-current { animation:none; }
+}
+
+.home-story .cert-strip { background:#1b1a15; border-block:1px solid #d8c39c30; }
+.home-story .cert-strip .wrap { min-height:76px; }
+.home-story .cert-strip .mono { color:#d3c6af; font-size:clamp(11px,.84vw,14px); line-height:1.7; }
+.home-story .cert-strip .link-arrow { white-space:nowrap; }
+
+/* The complete table and a metal-specific illuminated specimen card. */
+.home-story .products-band {
+  background:radial-gradient(ellipse at 79% 50%,color-mix(in srgb,var(--metal-tone,#e9be55) 12%,transparent),transparent 53%),linear-gradient(150deg,#1c1d16,#111410 65%);
+  color:var(--cream); border:0; scroll-margin-top:-24px; padding-block:clamp(28px,4.6svh,68px) clamp(55px,6vw,98px);
+}
+.metal-heading { display:flex; align-items:end; justify-content:space-between; gap:4vw; margin-bottom:clamp(20px,2.1vw,38px); }
+.home-story .metal-heading :is(h1,h2) { font-size:clamp(38px,3.55vw,63px); margin-top:13px; }
+.home-story .metal-heading .lead { max-width:38ch; color:#cbc4b5; font-size:clamp(14px,1.05vw,18px); }
+.metal-lab { position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(306px,32.5%); gap:clamp(27px,3.2vw,64px); align-items:start; }
+.table-bench { min-width:0; padding-top:clamp(6px,1vw,16px); }
+.table-bench .pt { grid-template-columns:16px repeat(18,minmax(0,1fr)); gap:clamp(2px,.28vw,5px); }
+.table-bench .picker { display:none; }
+.table-key { display:flex; justify-content:space-between; flex-wrap:wrap; gap:15px; align-items:center; border-top:1px solid #b1a98f3a; margin-top:18px; padding-top:15px; font:450 13px/1.4 var(--sans); }
+.lit-key { display:flex; align-items:center; gap:9px; color:#d4cbb7; }
+.lit-key::before { content:""; width:7px; height:7px; background:#e0ba74; box-shadow:0 0 7px #dea04e8c; }
+.table-key a { color:#e9c893; }
+.table-key a:hover { text-decoration:underline; }
+.metal-trace { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:2; }
+/* Global figures, kept together with their dates, units and source. */
+.home-story .sus-band { background:#1a2520; }
+.home-story .sus-band::before {
+  background:linear-gradient(90deg,#19251fe8 0%,#19251fdd 36%,#19251f9e 100%),
+    linear-gradient(0deg,#19251f,transparent 70%),url(../assets/scroll/kare-0019.webp) 105% 45%/72% auto no-repeat;
+}
+.home-story .sus-band .d2 { font-size:clamp(35px,4.15vw,72px); }
+.home-story .sus-band .stats { grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:clamp(20px,4vw,75px); border:0; }
+.home-story .sus-band .stat { position:relative; border:0; border-top:1px solid #e6e6d34c; padding:23px 0 0; }
+.home-story .sus-band .stat:nth-child(2)::before { content:""; position:absolute; inset:-1px auto auto 0; width:22.3%; height:3px; background:var(--gold); }
+.home-story .sus-band .stat b { font-size:clamp(53px,6vw,97px); color:var(--cream); }
+.home-story .sus-band .stat b small { font:400 clamp(13px,1.2vw,21px)/1.1 var(--sans); opacity:1; color:#d6cbb8; }
+.home-story .sus-band .stat > span { color:#deddd2; font-size:clamp(14px,1.14vw,18px); min-height:3em; }
+.home-story .sus-band .stat cite { font-size:10px; color:#c4c6b8; opacity:1; }
+
+/* The weight and NFC copy sit in the dark part of the photograph. */
+.home-story .gram { background:#16120d; display:grid; align-items:center; min-height:clamp(540px,82svh,890px); }
+.home-story .gram .wrap { position:static; display:block; }
+.home-story .gram .shot { position:absolute; z-index:-2; inset:0; aspect-ratio:auto; border-radius:0; background:#16120d; }
+.home-story .gram .shot img { object-position:50% 46%; }
+.home-story .gram::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,#110f0bf5 0%,#110f0be8 21%,#110f0ba8 37%,transparent 62%),linear-gradient(0deg,#14110e88,transparent 32%); }
+.home-story .gram .wrap > :last-child { max-width:43%; }
+.home-story .gram .lead { color:#e1d7c8; max-width:38ch; }
+.home-story .gram .sizes { flex-wrap:wrap; gap:0; margin:29px 0; max-width:365px; }
+.home-story .gram .sizes span { flex:1; padding:8px 3px 0 0; border:0; border-top:1px solid #e5cba66b; border-radius:0; color:#ecdfc8; font:400 12px/1.5 var(--mono); }
+.home-story .gram .btn-gram { color:#231c13; background:#e9c992; }
+
+/* One lead story and two shorter entries on the facing column. */
+.press-story { --accent:#805630; background:#eee8dc; color:#302a23; }
+.press-story .section-head { align-items:end; }
+.press-layout { display:grid; grid-template-columns:minmax(0,1.32fr) minmax(0,.88fr); gap:clamp(26px,4vw,75px); align-items:start; }
+.press-layout .press-card { display:grid; gap:11px; align-content:start; }
+.press-layout .press-card:first-child { grid-row:span 2; }
+.press-layout .media-frame { aspect-ratio:2.14; border-radius:0; background:#c9bba6; }
+.press-layout .press-card:nth-child(2) .media-frame { aspect-ratio:3.4; }
+.press-layout .press-card .meta { display:block; color:#756148; font:450 11px/1.3 var(--mono); }
+.press-layout .press-card h3 { font:400 clamp(23px,2.25vw,41px)/1.1 var(--serif); letter-spacing:-.035em; }
+.press-layout .press-card:first-child h3 { font-size:clamp(30px,3.05vw,54px); }
+.press-layout .press-card:last-child { border-top:1px solid #97856c; padding-top:18px; }
+.press-pending { grid-row:3; font-size:11px; color:#716759; }
+html:not(.review) .press-pending { display:none; }
+.press-layout .press-card:hover h3 { color:var(--accent); }
+.home-story .cta-band { background:#24201a; color:var(--cream); }
+.home-story .cta-band .wrap { align-items:center; }
+.home-story .cta-band h2 { max-width:22ch; font-size:clamp(37px,4.35vw,70px); }
+.home-story .cta-band .btn-dark { color:#292016; background:#ebcb96; }
+.home-page .site-footer { background:#151411; color:#eee6d8; border-color:#dccaaa30; }
+.home-page .site-footer .btn-gram, html:not(.film-on) .home-page .site-header:not(.is-open) .btn-gram { background:#e9c992; color:#211c15; box-shadow:none; }
+.home-page .site-footer .footer-word { color:#b6a892; background:none; }
+.home-page .site-footer .footer-word b { -webkit-text-fill-color:currentColor; }
+
+/* Stack the same material, pictures and links in narrower windows. */
+@media (max-width:980px) {
+  .metal-heading { gap:24px; }
+}
+@media (max-width:840px) {
+  .home-story .section-head--split,.history-notes { gap:30px; }
+  .metal-lab { grid-template-columns:1fr; gap:24px; }
+  .table-bench .pt,.metal-trace { display:none; }
+  .table-bench .picker { display:grid; }
+  .assay-card { width:100%; max-width:520px; justify-self:center; }
+}
+@media (max-width:700px) {
+  .home-story .section-head--split, .history-notes, .press-layout { grid-template-columns:1fr; }
+  .history-opening { min-height:550px; }
+  .history-photo { width:100%; mask-image:none; }
+  .history-opening::before { background:linear-gradient(0deg,var(--coal) 0%,#141310d9 35%,transparent 93%); }
+  .history-statement { max-width:100%; padding:155px 0 36px; }
+  .history-statement .intro-big { font-size:35px; }
+  .home-story .film-strip { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .home-story .world-media { inset:0 0 25%; width:100%; mask-image:linear-gradient(#000 63%,transparent); }
+  .home-story .world-lines,.home-story .world[data-mode="frames"] .world-lines { inset:57% var(--gut) 13%; width:auto; }
+  .home-story .world-line,.home-story .world[data-mode="frames"] .world-line { font-size:34px; }
+  .home-story .world-count { bottom:6%; }
+  .metal-heading { display:grid; gap:12px; }
+  .home-story .sus-band .stats { grid-template-columns:1fr; gap:25px; }
+  .home-story .sus-band .stat > span { min-height:0; }
+  .home-story .gram { min-height:700px; align-items:end; }
+  .home-story .gram .shot { inset:0 0 23%; }
+  .home-story .gram::after { background:linear-gradient(0deg,#15120e 30%,#15120ee6 44%,transparent 78%); }
+  .home-story .gram .wrap > :last-child { max-width:100%; }
+  .press-layout .press-card:first-child { grid-row:auto; }
+  .press-layout .press-card:nth-child(2) .media-frame { aspect-ratio:2.14; }
+  .home-story .cta-band .btn-dark { justify-self:start; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .home-story *, .home-story *::before, .home-story *::after { transition:none !important; animation:none !important; }
+}
+
+/* The last light in the footer gathers into the original SAY lettering. */
+html:has(#imza:target, #site-footer:target) { scroll-behavior:auto; }
+.home-page .site-footer { overflow:clip; }
+.say-finale {
+  --frame-height:clamp(325px,calc(100svh - var(--header-h)),1150px);
+  position:relative; margin:clamp(20px,3vw,54px) calc(50% - 50vw) 0;
+  scroll-margin-top:-24px; color:#efe3ce; text-align:center;
+}
+.signature-frame {
+  position:relative; isolation:isolate; margin:0; height:var(--frame-height); overflow:hidden;
+  background:radial-gradient(ellipse 47% 16% at 50% 69%,#42312150,transparent 88%),
+    radial-gradient(ellipse at 50% 46%,#211d18 0,#15140f 48%,#11110f 84%);
+}
+.signature-frame::before {
+  position:absolute; content:""; inset:0; pointer-events:none; z-index:1;
+  background:linear-gradient(#151411,transparent 18%,transparent 89%,#151411);
+}
+.signature-stage, .signature-stage canvas, .signature-wave { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+/* Harf kalıbı, logo setinin vektörel PDF'inden 1416 × 960 piksel üretildi (eski kalıbın 6 katı): Retina ekranda da keskin. */
+.signature-mark {
+  position:absolute; top:45%; left:50%; transform:translate(-50%,-50%); display:block;
+  width:min(70vw,62svh,600px); aspect-ratio:236/160;
+  background:linear-gradient(153deg,#b7824d 3%,#ffe9c4 28%,#deb87e 43%,#967248 60%,#f2c791 81%,#f5e3c7 94%);
+  -webkit-mask:url('../assets/logo/say-harfler.png') center / 100% 100% no-repeat;
+  mask:url('../assets/logo/say-harfler.png') center / 100% 100% no-repeat;
+}
+.signature-mark::after {
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(108deg,transparent 28%,#fff2d6bb 48%,transparent 64%) no-repeat;
+  background-size:50% 100%; background-position:var(--glint-position,-105%) 0;
+}
+.say-finale figcaption {
+  position:absolute; left:var(--gut); right:var(--gut); top:84%; z-index:1;
+  font:390 clamp(18px,1.7vw,29px)/1.22 var(--serif); letter-spacing:-.024em;
+  color:#d5c8b3; text-wrap:balance;
+}
+.say-finale figcaption em { color:#ecd1a6; font-weight:inherit; }
+/* Canlı imza (js/imza.js): logo atomların oturma cephesinin ardından soldan sağa açılır (--wave),
+   üzerinde yavaş bir parıltı gezinir (--sheen), alt yazı en son hafifçe yükselerek gelir.
+   Dalga, logonun kendi kalıbıyla birleştirilmez; ayrı sarmalayıcıdadır. İki kalıp katmanı tek öğede
+   birleşince Chrome kutunun kenarlarında ince bir dikdörtgen çizgi bırakıyordu. */
+.say-finale.animated-signature .signature-mark {
+  opacity:var(--body-light,0);
+  background-size:220% 100%; background-position:var(--sheen,50%) 50%;
+}
+.say-finale.animated-signature .signature-wave { -webkit-mask-image:var(--wave,none); mask-image:var(--wave,none); }
+.say-finale.animated-signature figcaption { opacity:var(--caption-light,0); transform:translateY(calc((1 - var(--caption-light,0)) * 20px)); }
+@media (max-width:600px) {
+  .say-finale { --frame-height:clamp(325px,calc(100svh - var(--header-h)),800px); }
+  .signature-mark { width:min(64vw,41svh); }
+}
+
+/* ---------- İç sayfalar: ana sayfadan taşınan bölümler ----------
+   Sayfanın başındaki bölüm sabit üst barın altından başlar; saydam kenarlık içeriği iter, bölümün arka planı
+   üst barın arkasına kadar uzanır. */
+main#icerik > .home-story:first-child > section:first-child { border-top:var(--header-h) solid transparent; }
+/* Ürünler: seçili metalin bütün geri kazanım kaynakları tablonun altında */
+.home-story .metal-sources { margin-top:clamp(28px,3vw,52px); }
+/* Sürdürülebilirlik: rakamların kapsamını anlatan not */
+.home-story .sus-band .stats-note { color:#c9cbbd; }
+/* Ana sayfa: "Filmi geç" dünya bölümünün tam başına iner (sayfanın genel kaydırma payını telafi eder) */
+.home-story .world { scroll-margin-top:calc(-1 * (var(--header-h) + 24px)); }
+/* Ana sayfa altbilgisi yalnız SAY kapanışı ve © satırı: menü sütunları için ayrılan üst boşluk ve çizgi yok */
+.home-page .site-footer { padding-top:0; border-top:0; }
+/* ---------- Ana sayfa: öne çıkan üç hizmet (altısı da Hizmetler sayfasında) ---------- */
+.home-story .service-trio { background:#14120e; padding-block:clamp(72px,9vw,150px); border-top:1px solid #e4d8b81f; }
+.home-story .trio-head { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:clamp(34px,4.4vw,72px); }
+.home-story .trio-head .d2 { margin-top:20px; max-width:17ch; }
+.home-story .trio-head .link-arrow { white-space:nowrap; }
+.home-story .trio { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(20px,2.6vw,44px); }
+.home-story .trio-card { display:grid; align-content:start; gap:12px; padding-bottom:24px; border-bottom:1px solid #e4d8b83a; color:inherit; }
+/* Numune görseli: 3 × 2 sprite'ın bir hücresi; siyah zemin koyu bölüme karışır */
+.home-story .trio-sample { display:block; width:78%; aspect-ratio:1; margin:0 auto 4px; background:url('../assets/img/hizmet-numuneleri.webp') no-repeat var(--sample-at,0 0) / 300% 200%; mix-blend-mode:screen; transition:opacity .8s var(--ease) var(--d,0s), transform .9s var(--ease); }
+.home-story .trio-card:hover .trio-sample { transform:scale(1.04) rotate(-1.5deg); }
+.home-story .trio-num { font:500 11px/1 var(--mono); letter-spacing:.12em; color:var(--gold); }
+.home-story .trio-card h3 { font:400 clamp(28px,2.5vw,44px)/1.05 var(--serif); letter-spacing:-.03em; color:var(--cream); }
+.home-story .trio-card p { color:#cbc4b5; font-size:clamp(14px,1.05vw,17px); line-height:1.55; max-width:40ch; }
+.home-story .trio-more { display:inline-flex; gap:8px; align-items:center; width:fit-content; margin-top:6px; padding-bottom:3px; border-bottom:1px solid #bda7828f; font-size:14px; font-weight:550; transition:color .2s; }
+.home-story .trio-card:hover .trio-more { color:var(--gold); }
+@media (max-width:840px) {
+  .home-story .trio { grid-template-columns:1fr; gap:44px; }
+  .home-story .trio-head { display:grid; justify-items:start; }
+  .home-story .trio-sample { width:min(64%,300px); }
+}
+/* Kart görünme animasyonu kartın kendisinde değil: görsel ve metin ayrı belirir. Kart animasyon sırasında ayrı
+   katmana geçince numunenin siyah zemini arka plana karışamıyor, bir an siyah kare görünüyordu. */
+.home-story .trio-text { display:grid; gap:12px; }
+/* ---------- Hizmetler sayfası: 6 hizmetin ayrıntıları ----------
+   Solda malzemenin numunesi (okurken sabit), sağda başlık, metin ve geri kazanılan metaller. */
+.home-story .service-details { background:#14120e; padding-bottom:clamp(40px,5vw,90px); }
+.home-story .service-detail {
+  display:grid; grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr); gap:clamp(36px,6vw,120px); align-items:start;
+  padding-block:clamp(64px,8vw,132px); border-top:1px solid #e4d8b82e; scroll-margin-top:60px;
+}
+.home-story .service-detail:first-of-type { border-top:0; }
+/* Sabit konumlu öğe kendi katmanında çizilir: numunenin siyah zemini, katmanın içindeki bu zemine karışır */
+.home-story .sd-visual { position:sticky; top:calc(var(--header-h) + 96px); display:grid; gap:18px; justify-items:center; isolation:isolate; background:#14120e; }
+.home-story .sd-sample {
+  display:block; width:min(100%,460px); aspect-ratio:1; mix-blend-mode:screen;
+  background:url('../assets/img/hizmet-numuneleri.webp') no-repeat var(--sample-at,0 0) / 300% 200%;
+}
+.home-story .sd-caption { display:flex; gap:14px; align-items:baseline; justify-content:center; font:400 11px/1.4 var(--mono); letter-spacing:.1em; text-transform:uppercase; color:#b9ae9c; }
+.home-story .sd-index { color:var(--gold); }
+.home-story .sd-body { display:grid; gap:22px; align-content:start; }
+.home-story .service-detail .d2 { font-size:clamp(40px,4vw,72px); }
+.home-story .sd-sub { max-width:30ch; color:var(--gold); font:italic 350 clamp(19px,1.6vw,27px)/1.25 var(--serif); letter-spacing:-.02em; }
+.home-story .service-detail .prose { max-width:62ch; }
+.home-story .service-detail .prose p { color:#d7cfc1; font-size:clamp(15.5px,1.12vw,18px); line-height:1.72; }
+.home-story .service-detail .prose .d4 { margin-top:1.6em; color:var(--cream); font-family:var(--serif); font-weight:400; }
+.home-story .service-detail .more-toggle { color:var(--cream); border-bottom-color:#e7c59499; }
+.home-story .service-detail .more-toggle:hover { color:var(--gold); }
+.home-story .sd-metals { display:grid; gap:12px; margin-top:10px; padding-top:22px; border-top:1px solid #e4d8b824; }
+.home-story .sd-label { color:#b9ae9c; font:500 11px/1.3 var(--mono); letter-spacing:.1em; text-transform:uppercase; }
+.home-story .sd-tiles { display:flex; flex-wrap:wrap; gap:8px; }
+/* Periyodik tablo karosu: geri kazanılan 10 metal Ürünler sayfasında o metali açar, diğerleri sönük */
+.home-story .sd-metal {
+  display:grid; align-content:space-between; width:78px; height:86px; padding:8px 9px;
+  border:1px solid #e7c5945c; border-radius:6px; background:linear-gradient(160deg,#e7c59414,#e7c59405); color:var(--cream);
+  transition:border-color .2s, background .2s, transform .3s var(--ease);
+}
+.home-story .sd-metal small { color:#c9b48f; font:400 10px/1 var(--mono); }
+.home-story .sd-metal b { color:var(--gold); font:400 28px/1 var(--serif); letter-spacing:-.03em; }
+.home-story .sd-metal > span { overflow:hidden; color:#cbc4b5; font:400 10px/1.15 var(--sans); white-space:nowrap; text-overflow:ellipsis; }
+.home-story a.sd-metal:hover { border-color:var(--gold); background:#e7c5942b; transform:translateY(-2px); }
+.home-story .sd-metal.is-plain { border-color:#ffffff1f; background:none; }
+.home-story .sd-metal.is-plain b { color:#cbc4b5; }
+.home-story .sd-metal.is-group b { font-size:22px; }
+@media (max-width:900px) {
+  .home-story .service-detail { grid-template-columns:1fr; gap:26px; }
+  .home-story .sd-visual { position:static; }
+  .home-story .sd-sample { width:min(66%,320px); }
+}
+/* Hizmetler alt menüsü: sıcak tonlar, hap yerine alt çizgi */
+.subnav--story { background:rgba(20,18,14,.93); border-bottom-color:#e4d8b824; }
+.subnav--story a { padding:10px 12px; border-radius:0; color:#cbc4b5; font:500 11px/1.3 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+.subnav--story a:hover { background:none; color:#e7c594; }
+.subnav--story a.is-active { background:none; color:#f4ede1; box-shadow:inset 0 -1px 0 #e7c594; }
+/* Hizmetler: alt menü ekranın üstüne yapışınca boş kalan yeri sayfanın mavi-gri zemini değil, aynı sıcak ton doldurur */
+main:has(> .subnav--story) { background:#14120e; }
+@media (max-width:420px) { .home-story .sd-metal { width:72px; height:82px; } }

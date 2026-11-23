@@ -1,0 +1,87 @@
+/* SAY METAL v5 · telefon ve dikey tablet düzenlemeleri
+   Bütün kurallar dar ya da dikey ekran sorgularının içindedir; masaüstü yerleşimi değişmez.
+   Videoların kadrajı js/mobil-kadraj.js ile ayarlanır. */
+
+/* ---------- Süreç filmi ---------- */
+/* Telefonda tesis sahnesi yok (js/film-mobil.js): yedi sahnelik 870vh, altı sahneye düşer; her sahnenin
+   kaydırma mesafesi aynı kalır: 100vh sahne + 6 × 110vh. */
+.film.is-ready.film--no-facility { height: 760vh; }
+
+@media (orientation: portrait) and (max-width: 900px) {
+  /* Geniş öznesi olan iki sahne kırpılmaz: karenin tamamı büyütülerek gösterilir,
+     boşluklar aynı karenin bulanık kopyasıyla dolar.
+     Logo sahnesi: amblem ve SAY yazısı birlikte. Külçe sahnesi: kalıp, külçe ve maşa birlikte. */
+  .film-stage:is([data-act="say-metal"], [data-act="belgeler"]) .film-picture video.film-footage {
+    object-fit: contain;
+    /* 16:9 karenin üst ve alt kenarı (yarı yüksekliği 28.125vw) arka plana yumuşakça karışır */
+    -webkit-mask-image: linear-gradient(180deg, transparent calc(50% - 28vw), #000 calc(50% - 18vw), #000 calc(50% + 18vw), transparent calc(50% + 28vw));
+    mask-image: linear-gradient(180deg, transparent calc(50% - 28vw), #000 calc(50% - 18vw), #000 calc(50% + 18vw), transparent calc(50% + 28vw));
+  }
+  .film-stage[data-act="say-metal"] .film-picture video.film-footage { transform: scale(1.1); }
+  /* Külçe ve maşa karenin %24–86 arasında: kare 1,48 kat büyür ve özne ortaya kayar */
+  .film-stage[data-act="belgeler"] .film-picture video.film-footage { transform: translateX(-7vw) scale(1.48); }
+  .film-stage:is([data-act="say-metal"], [data-act="belgeler"]) .film-picture::before {
+    content: ''; position: absolute; inset: -12%;
+    background: center / cover no-repeat;
+    filter: blur(26px) brightness(.5) saturate(.9);
+  }
+  .film-stage[data-act="say-metal"] .film-picture::before { background-image: url('../assets/film/f-0440.webp'); }
+  .film-stage[data-act="belgeler"] .film-picture::before { background-image: url('../assets/film/f-0199.webp'); }
+  /* Tesis fotoğrafları: bina kadrajın ortasında */
+  .visit-landscape img[data-facility-photo="0"] { object-position: 57% 50%; }
+  .visit-landscape img[data-facility-photo="1"] { object-position: 66% 50%; }
+  .visit-landscape img[data-facility-photo="2"] { object-position: 26% 50%; }
+}
+
+/* Logo sahnesinin metni yok: amblem ekranın ortasında durur, alt gölge yalnızca oynat satırını korur */
+@media (orientation: portrait) and (max-width: 760px) {
+  .film-stage[data-act="say-metal"] .film-picture { inset: 0; }
+  .film-stage[data-act="say-metal"] .film-shadow { background: linear-gradient(0deg, #0c0b0a 0%, #0c0b0acc 12%, transparent 30%), linear-gradient(180deg, #0c0b0a99, transparent 16%); }
+}
+
+/* Telefonda bölüm şeridi yok: oynat düğmesi "Kaydırarak ilerleyin" satırının başına geçer, metin alanı aşağı iner */
+@media (max-width: 760px) {
+  .film-console { display: grid; grid-template-columns: 32px 1fr; align-items: center; column-gap: 12px; }
+  .film-controls { display: contents; }
+  .film-play { order: -1; border-top: 0; padding-top: 0; }
+  .film-console-top { margin-bottom: 0; }
+  .film-chapters { display: none; }
+  .film-script { bottom: 72px; }
+}
+
+/* ---------- Hizmetler: telefonda her malzeme kendi görseliyle, yana kaydırılan kartlar ---------- */
+@media (max-width: 840px) {
+  .services-story:not(.is-exhibit) .service-scenes {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(84%, 360px);
+    gap: 16px; margin: 22px calc(-1 * var(--gut)) 0; padding: 0 var(--gut) 10px;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    scroll-padding-inline: var(--gut); scrollbar-width: none;
+  }
+  .services-story:not(.is-exhibit) .service-scenes::-webkit-scrollbar { display: none; }
+  .services-story:not(.is-exhibit) .material-detail { scroll-snap-align: start; align-content: start; padding-bottom: 16px; border-bottom: 1px solid #e4d8b83a; }
+  /* Kutu sprite hücresiyle aynı oranda (kare): yalnızca o malzemenin görseli görünür, komşu hücreler taşmaz */
+  .services-story:not(.is-exhibit) .material-detail::before {
+    content: ''; display: block; width: 75%; aspect-ratio: 1; margin: 0 auto 2px;
+    background: url('../assets/img/hizmet-numuneleri.webp') no-repeat var(--sample-at, 0 0) / 300% 200%;
+    mix-blend-mode: screen;
+  }
+  .services-story:not(.is-exhibit) .material-detail h3 { font-size: 28px; }
+  .services-story:not(.is-exhibit) .sample-description { font-size: 15.5px; }
+  /* Sprite 3 × 2: devre kartı, cevher, talaş / katalitik konvertör, cüruf, platin süngeri */
+  #malzeme-elektronik-atik { --sample-at: 0% 0%; }
+  #malzeme-maden-atiklari { --sample-at: 50% 0%; }
+  #malzeme-endustriyel-atiklar { --sample-at: 100% 0%; }
+  #malzeme-katalizorler { --sample-at: 0% 100%; }
+  #malzeme-tehlikeli-tehlikesiz { --sample-at: 50% 100%; }
+  #malzeme-pgm { --sample-at: 100% 100%; }
+}
+
+/* ---------- SAY GRAM: fotoğraf üstte, metin altta; başlık külçenin üstüne binmesin ---------- */
+@media (max-width: 700px) {
+  .home-story .gram { min-height: 0; display: block; padding-top: 0; }
+  .home-story .gram::after { display: none; }
+  .home-story .gram .shot { position: relative; inset: auto; z-index: 0; aspect-ratio: 1 / .9; margin: 0 calc(-1 * var(--gut)) -28px; }
+  .home-story .gram .shot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, #16120d 2%, #16120dcc 16%, transparent 46%); }
+  .home-story .gram .shot img { object-position: 52% 50%; }
+  .home-story .gram .wrap > :last-child { position: relative; }
+}

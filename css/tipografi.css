@@ -1,0 +1,66 @@
+/* SAY METAL · iç sayfalar için akışkan yazı ölçeği
+   Her boyut 360 px ekrandan 1600 px ekrana doğrusal büyür, sonra sabit kalır. rem tabanlıdır: tarayıcı
+   yakınlaştırmasına ve kullanıcının yazı boyutu ayarına uyar. Yalnız iç sayfalarda yüklenir (en son);
+   ana sayfa, üst menü ve altbilgi değişmez. Hiçbir okunan metin 11 pikselin altına inmez. */
+:root {
+  --fs-micro: clamp(.7188rem, .7006rem + .0806vw, .7812rem);   /* 11.5 → 12.5 px · büyük harfli etiketler */
+  --fs-small: clamp(.9062rem, .8881rem + .0806vw, .9688rem);   /* 14.5 → 15.5 px · düğme, kart metni */
+  --fs-body: clamp(1.031rem, .995rem + .1613vw, 1.156rem);     /* 16.5 → 18.5 px · gövde metni */
+  --fs-lead: clamp(1.125rem, 1.052rem + .3226vw, 1.375rem);    /* 18 → 22 px · giriş paragrafı */
+  --fs-h4: clamp(1.25rem, 1.141rem + .4839vw, 1.625rem);       /* 20 → 26 px */
+  --fs-h3: clamp(1.438rem, 1.202rem + 1.048vw, 2.25rem);       /* 23 → 36 px */
+  --fs-h2: clamp(1.875rem, 1.403rem + 2.097vw, 3.5rem);        /* 30 → 56 px */
+  --fs-h1: clamp(2.25rem, 1.597rem + 2.903vw, 4.5rem);         /* 36 → 72 px · sayfa başlığı */
+  --fs-h1-long: clamp(2rem, 1.528rem + 2.097vw, 3.625rem);     /* 32 → 58 px · cümle uzunluğunda sayfa başlığı */
+  --fs-quote: clamp(1.5rem, 1.173rem + 1.452vw, 2.625rem);     /* 24 → 42 px */
+  --fs-year: clamp(1.75rem, 1.242rem + 2.258vw, 3.5rem);       /* 28 → 56 px */
+  --fs-stat: clamp(2.375rem, 1.903rem + 2.097vw, 4rem);        /* 38 → 64 px · büyük rakamlar */
+  --fs-story-lead: clamp(1rem, .9637rem + .1613vw, 1.125rem);  /* 16 → 18 px · hikâye bölümlerinin açıklamaları */
+}
+
+/* ---------- Gövde ve başlıklar ---------- */
+body { font-size: var(--fs-body); }
+.lead { font-size: var(--fs-lead); }
+.d1, .page-hero--teal .d1 { font-size: var(--fs-h1); }
+.d2 { font-size: var(--fs-h2); }
+.d3 { font-size: var(--fs-h3); }
+.d4 { font-size: var(--fs-h4); }
+
+/* ---------- Eski tasarımlı bölümler (iç sayfalar) ---------- */
+.tl-year { font-size: var(--fs-year); }
+.tl-body h3 { font-size: var(--fs-h4); }
+.value h3 { font-size: var(--fs-h3); }
+.quote { font-size: var(--fs-quote); }
+.contact-big { font-size: var(--fs-h4); }
+.stat b { font-size: var(--fs-stat); }
+.stat > span, .card p, .row p, .pill-list li, .more-toggle, .form .consent, .sdg span,
+.doc .acts a, .doc .acts button, main .btn, .subnav a { font-size: var(--fs-small); }
+.cta-band p { font-size: var(--fs-lead); }
+.eyebrow, .mono, .page-hero .crumb, .press .meta, .dl dt, .field label, .form-note, .cap, .stat cite,
+.card .n, .row .n, .doc .kind, .doc .size, .doc .prev::after, .value::before, .sus-item .k .n,
+.subnav--story a { font-size: var(--fs-micro); }
+
+/* ---------- Ana sayfadan taşınan hikâye bölümleri ----------
+   Sayfa başlıkları ve bölüm başlıkları aynı ölçeğe bağlanır; açıklamalar telefonda 16 pikselin altına inmez. */
+.home-story h1.d2, .home-story .metal-heading h1 { font-size: var(--fs-h1); }
+.home-story h1.intro-big, .home-story .sus-band h1.d2 { font-size: var(--fs-h1-long); }
+.home-story h2.d2, .home-story .service-detail .d2, .home-story .cta-band h2 { font-size: var(--fs-h2); }
+.home-story .lead, .home-story .metal-heading .lead, .home-story .history-prose { font-size: var(--fs-story-lead); }
+.home-story .sus-band .stat b, .home-story .history-notes .stat b { font-size: var(--fs-stat); }
+.home-story .service-detail .prose p { font-size: var(--fs-body); }
+.home-story .sd-sub { font-size: var(--fs-h4); }
+/* Okunabilirlik tabanı: 9–10,6 px'e inen etiketler en az 11 px */
+.home-story .sus-band .stat cite, .home-story .stat cite { font-size: var(--fs-micro); }
+.shot-caption b, .home-story .sd-metal small, .src-list li i { font-size: 11px; }
+.home-story .sd-metal > span { font-size: 11px; }
+.home-story .sd-metal { width: 82px; }
+.assay-head p { font-size: clamp(11px, 2.65cqw, 12.5px); }
+.assay-facts dt { font-size: clamp(11px, 2.5cqw, 12.5px); }
+.assay-summary { font-size: clamp(14.5px, 3.45cqw, 16.5px); }
+/* Rakamların kapsamını anlatan not: satır uzunluğu okunur sınırda */
+.home-story .sus-band .stats-note { max-width: 62ch; font-size: var(--fs-small); }
+@media (max-width: 420px) { .home-story .sd-metal { width: 74px; } }
+/* Üst menü ve altbilgi ana sayfadakiyle aynı kalır (gövde ölçeğinden etkilenmez) */
+#site-header, .site-footer { font-size: 1.0625rem; }
+/* Ürünler: periyodik tablodaki "Geri kazanım kaynağı" etiketi en az 11 px */
+.table-source small { font-size: clamp(11px, 1.2cqw, 12.5px); }
